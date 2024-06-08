@@ -1,0 +1,30 @@
+.loader-container {
+  height: 100px;
+  position: relative;
+
+  .spinner {
+    position: absolute;
+    padding: 16px;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    height: 50px;
+    width: 50px;
+    border-left: 2px solid yellow;
+    border-bottom: 5px solid yellow;
+    border-radius: 50%;
+    animation: anim-rotate 0.8s linear 0s infinite;
+  }
+
+  @keyframes anim-rotate {
+    0% {
+      transform: rotate(0);
+    }
+    50% {
+      transform: rotate(90deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

@@ -20,18 +20,30 @@ function App() {
   const [totalSearchResult, setTotalSearchResult] = useState(null);
 
   async function fetchMovieData(isInitialFetch) {
-    if (isInitialFetch || (totalSearchResult!=null && data.length < totalSearchResult)) {
-      setLoading(true);
-      const dataFetch = await fetch(
-        `https://www.omdbapi.com/?apikey=b9bd48a6&s=marvel&&page=${page}`
-      );
-      const dataVal = await dataFetch.json();
-      if (isInitialFetch) {
-        setTotalSearchResult(dataVal["totalResults"]);
+    try{
+      console.log("data length", data.length, totalSearchResult);
+      if (isInitialFetch || (totalSearchResult!=null && data.length < totalSearchResult)) {
+        setLoading(true);
+        const dataFetch = await fetch(
+          `https://www.omdbapi.com/?apikey=b9bd48a6&s=marvel&&page=${page}`
+        );
+        const dataVal = await dataFetch.json();
+        if(dataVal && !dataVal["Response"]){
+          alert("some error occurred refresh the page");
+        }
+        if (isInitialFetch) {
+          setTotalSearchResult(dataVal["totalResults"]);
+        }
+        setLoading(false);
+        setData(prev=>[...prev,...(dataVal["Search"] ?? [])]);
+      }else{
+        setLoading(false);
       }
+    }catch(error){
       setLoading(false);
-      setData(prev=>[...prev,...dataVal["Search"]]);
+      console.error("Error occurred while fetching data");
     }
+    
   }
 
   useEffect(() => {
@@ -43,7 +55,7 @@ function App() {
 
   useEffect(()=>{
     console.log("Page: ,Fetching new data", page);
-    // fetchMovieData();
+    fetchMovieData();
   }, [page]);
 
   return (
