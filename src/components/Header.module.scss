@@ -1,0 +1,21 @@
+
+.header{
+    padding: 8px;
+    display: flex;
+
+    & div{
+        display: inline-block;
+    }
+
+    .site-Logo{
+        // font-size: 1.5rem;
+        color: yellow;
+    }
+
+    .home-link{
+        margin-left: auto;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    
+}

@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+  justify-content: center;
+
+  .child-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+
+  @media screen and (max-width: 600px) {
+    // width: 50%;
+
+    .child-container{
+
+      justify-content: center;
+    }
+  }
+
+  @media screen and (min-width: 900px) {
+    // width: 50%;
+
+    .child-container{
+
+      justify-content: space-between;
+    }
+  }
+}
+
+.card {
+  // Mobile layout
+  width: 100%;
+  height: 50vh;
+  min-width: 280px;
+  max-width: 400px;
+  padding: 16px;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  align-content: center;
+
+ 
+
+  // Tablet layout (2-grid)
+  @media screen and (min-width: 600px) {
+    width: 50%;
+  }
+
+  // Desktop layout (3-grid)
+  @media screen and (min-width: 900px) {
+    width: 33.33%;
+  }
+}

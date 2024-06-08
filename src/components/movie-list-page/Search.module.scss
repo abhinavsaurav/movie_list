@@ -1,0 +1,15 @@
+.wrapper{
+    padding:8px;
+
+    & > input{
+        width: 100%;
+        height: 36px;
+        font-size: 18px;
+        
+        border-radius: 8px;
+
+        &::placeholder{
+            padding-left: 8px;
+        }
+    }
+}
