@@ -3,9 +3,14 @@ import classes from "./Search.module.scss";
 import { API_KEY, SINGLE_MOVIE_PAGE_PATH } from "../../constants/constants";
 import { useNavigation } from "../../hooks/useNavigation";
 
+const DEFAULT_TEXT = [{
+  Title: "Please type something to show result",
+  dontNavigate: true,
+}];
+
 function Search({ handleSearch }) {
   const [value, setValue] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
+  const [suggestions, setSuggestions] = useState(DEFAULT_TEXT);
   const { navigateTo } = useNavigation();
 
   const fetchSuggestionData = async () => {
@@ -43,15 +48,13 @@ function Search({ handleSearch }) {
     const timerid = setTimeout(() => {
       if(value.length>0){
         fetchSuggestionData();
+      }else{
+        setSuggestions(DEFAULT_TEXT);
       }
     }, 250);
 
     return () => clearTimeout(timerid);
   }, [value]);
-
-  useEffect(() => {
-    console.log(suggestions);
-  }, [suggestions]);
 
   function handleValueChange(e) {
     const eventVal = e.target.value;

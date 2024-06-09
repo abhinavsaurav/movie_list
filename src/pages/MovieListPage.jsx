@@ -23,14 +23,14 @@ function MovieListPage({ data, setPage, isLoading }) {
     });
     observer.current.observe(node);
   },[isLoading, setPage]); 
-  
+
   return (
     <div className="common-padding">
       <div className={classes.container}>
         <div className={classes["child-container"]}>
             {data.map((datum, index) => {
               return (
-                <div key={`${datum.imdbID}-${index}`} ref={index === (data.length -4)? lastObserverRef : null} className={classes.card} onClick={(e)=>{e.stopPropagation()}}>
+                <div key={`${datum.imdbID}-${index}`} ref={index === (data.length -4)? lastObserverRef : null} className={classes.card}>
                   <Card key={datum.imdbID} {...datum} />
                 </div>
               );
