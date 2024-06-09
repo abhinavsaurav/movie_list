@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "../hooks/useNavigation";
-import { MOVIE_LIST_PAGE_PATH } from "../constants/constants";
+import { API_KEY, MOVIE_LIST_PAGE_PATH } from "../constants/constants";
 import classes from "./SingleMoviePage.module.scss";
 
 function SingleMoviePage(props) {
@@ -9,16 +9,19 @@ function SingleMoviePage(props) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // if(apiCount ==0){
-    const moviePath = window.location.pathname;
-    console.log(moviePath);
-    const imdbId = moviePath.split("/")[2];
-    if (!imdbId) {
-      navigateTo(MOVIE_LIST_PAGE_PATH);
-    } else {
-      console.log("fetchMovieData");
-        fetchMovieData(imdbId);
-    }
+    const timerId = setTimeout(()=>{
+      const moviePath = window.location.pathname;
+      // console.log(moviePath);
+      const imdbId = moviePath.split("/")[2];
+      if (!imdbId) {
+        navigateTo(MOVIE_LIST_PAGE_PATH);
+      } else {
+        console.log("fetchMovieData");
+          fetchMovieData(imdbId);
+      }
+    },200);
+
+    return ()=> clearTimeout(timerId);
   }, []);
 
   async function fetchMovieData(id) {
@@ -26,7 +29,7 @@ function SingleMoviePage(props) {
       setLoading(true);
       console.log(id);
       const dataFetch = await fetch(
-        `https://www.omdbapi.com/?apikey=b9bd48a6&i=${id}`
+        `https://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`
       );
       const dataVal = await dataFetch.json();
       if (dataVal && !dataVal["Response"]) {

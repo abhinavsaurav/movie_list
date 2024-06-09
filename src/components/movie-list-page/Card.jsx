@@ -1,5 +1,5 @@
-import { SINGLE_MOVIE_PAGE_PATH } from "../constants/constants";
-import { useNavigation } from "../hooks/useNavigation";
+import { SINGLE_MOVIE_PAGE_PATH } from "../../constants/constants";
+import { useNavigation } from "../../hooks/useNavigation";
 import classes from "./Card.module.scss";
 
 function Card({ Title: title, Poster: poster, imdbID }) {

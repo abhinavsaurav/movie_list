@@ -1,7 +1,7 @@
 // import React from 'react';
 
 import { useCallback, useEffect, useRef } from "react";
-import Card from "../components/Card";
+import Card from "../components/movie-list-page/Card";
 import classes from "./MovieListPage.module.scss";
 import Loader from "../components/Loader";
 
@@ -30,7 +30,7 @@ function MovieListPage({ data, setPage, isLoading }) {
         <div className={classes["child-container"]}>
             {data.map((datum, index) => {
               return (
-                <div key={`${datum.imdbID}-${index}`} ref={index === (data.length -4)? lastObserverRef : null} className={classes.card}>
+                <div key={`${datum.imdbID}-${index}`} ref={index === (data.length -4)? lastObserverRef : null} className={classes.card} onClick={(e)=>{e.stopPropagation()}}>
                   <Card key={datum.imdbID} {...datum} />
                 </div>
               );
