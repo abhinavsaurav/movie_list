@@ -4,18 +4,22 @@ import classes from "./Header.module.scss";
 import Search from "./movie-list-page/Search";
 
 function Header() {
-  const {path, navigateTo } = useNavigation();
+  const { path, navigateTo } = useNavigation();
 
   return (
     <div>
-      
-    <header className={classes.header}>
-      <div className={classes["site-logo"]}>Movie List</div>
-      <a className={classes["home-link"]} onClick={()=>{
-        navigateTo(MOVIE_LIST_PAGE_PATH);
-      }}>Home</a>
-    </header>
-    {path === '/' && <Search />}
+      <header className={classes.header}>
+        <div className={classes.logo}>Movie List</div>
+        <a
+          className={classes["home-link"]}
+          onClick={() => {
+            navigateTo(MOVIE_LIST_PAGE_PATH);
+          }}
+        >
+          Home
+        </a>
+      </header>
+      {path === MOVIE_LIST_PAGE_PATH && <Search />}
     </div>
   );
 }

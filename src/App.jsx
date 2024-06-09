@@ -13,10 +13,9 @@ import Route from "./components/navigation/Route";
 let apiCallCount = 0;
 
 function App() {
-  
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [totalSearchResult, setTotalSearchResult] = useState(null);
 
   async function fetchMovieData(isInitialFetch) {
@@ -42,6 +41,7 @@ function App() {
     }catch(error){
       setLoading(false);
       console.error("Error occurred while fetching data");
+      alert("some error occurred refresh the page");
     }
     
   }

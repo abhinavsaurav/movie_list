@@ -1,11 +1,12 @@
 
-import { useEffect, useState } from "react";
+import { act, useEffect, useState } from "react";
 import NavigationContext from "./NavigationContext";
 import { MOVIE_LIST_PAGE_PATH } from "../../constants/constants";
 
 // eslint-disable-next-line react/prop-types
 function NavigationProvider({children}) {
-    const [path, navigateTo] = useState(MOVIE_LIST_PAGE_PATH);
+    const [path, navigateTo] = useState(window.location.pathname);
+    // const [activeData, setSinglePageData] = useState(null);
 
     useEffect(() => {
         const handlePopState = () => {
@@ -19,13 +20,15 @@ function NavigationProvider({children}) {
         };
     }, []);
 
-    useEffect(() => {
-        window.history.pushState({}, '', path);
-    }, [path]);
+    // useEffect(() => {
+    //     window.history.pushState({}, '', path);
+    // }, [path]);
 
     const value = {
         path,
         navigateTo,
+        // activeData,
+        // setSinglePageData,
     }
 
     return (<NavigationContext.Provider value={value}>

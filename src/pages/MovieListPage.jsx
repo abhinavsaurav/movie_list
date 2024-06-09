@@ -30,9 +30,9 @@ function MovieListPage({ data, setPage, isLoading }) {
         <div className={classes["child-container"]}>
             {data.map((datum, index) => {
               return (
-                <span key={`${datum.imdbID}-${index}`} ref={index === (data.length -4)? lastObserverRef : null} className={classes.card}>
+                <div key={`${datum.imdbID}-${index}`} ref={index === (data.length -4)? lastObserverRef : null} className={classes.card}>
                   <Card key={datum.imdbID} {...datum} />
-                </span>
+                </div>
               );
             }
             )}

@@ -2,14 +2,11 @@
 .header{
     padding: 8px;
     display: flex;
-
-    & div{
-        display: inline-block;
-    }
-
-    .site-Logo{
-        // font-size: 1.5rem;
-        color: yellow;
+    font-size: 1.25rem;
+   
+    .logo{
+        color:gold;
+        
     }
 
     .home-link{
