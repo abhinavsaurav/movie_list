@@ -4,7 +4,7 @@ import { API_KEY, SINGLE_MOVIE_PAGE_PATH } from "../../constants/constants";
 import { useNavigation } from "../../hooks/useNavigation";
 
 const DEFAULT_TEXT = [{
-  Title: "Please type something to show result",
+  Title: "Please type more than 3 letters",
   dontNavigate: true,
 }];
 
@@ -46,7 +46,7 @@ function Search({ handleSearch }) {
 
   useEffect(() => {
     const timerid = setTimeout(() => {
-      if(value.length>0){
+      if(value.length>2){
         fetchSuggestionData();
       }else{
         setSuggestions(DEFAULT_TEXT);
